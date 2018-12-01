@@ -10,6 +10,7 @@ pub fn solve(part:Part)->i32{
         },
         Part::Two => {
             let mut freqs = HashSet::new();
+
             freqs.insert(0);
             let vals:Vec<i32> = input.lines().map(|s| parse_row(s)).collect();
             let mut cycle_it = vals.into_iter().cycle();
