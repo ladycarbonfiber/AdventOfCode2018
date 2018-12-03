@@ -12,7 +12,6 @@ pub fn solve(part: Part) -> String {
                 for c in row.chars() {
                     *counts.entry(c).or_insert(0) += 1;
                 }
-
                 let mut has2 = false;
                 let mut has3 = false;
                 for (_, count) in &counts {
@@ -23,12 +22,21 @@ pub fn solve(part: Part) -> String {
                         has3 = true;
                     }
                 }
-                if has2 {
-                    twos = twos + 1;
+                match (has2, has3){
+                    (true, true) =>{
+                        twos+=1;
+                        threes+=1;
+                    }
+                    (true, false) =>{
+                        twos += 1;
+                    },
+                    (false,true) =>{
+                        threes +=1;
+                    },
+                    (false,false)=> ()
+
                 }
-                if has3 {
-                    threes = threes + 1;
-                }
+
             }
             (twos * threes).to_string()
         }
