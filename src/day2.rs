@@ -22,21 +22,19 @@ pub fn solve(part: Part) -> String {
                         has3 = true;
                     }
                 }
-                match (has2, has3){
-                    (true, true) =>{
-                        twos+=1;
-                        threes+=1;
-                    }
-                    (true, false) =>{
+                match (has2, has3) {
+                    (true, true) => {
                         twos += 1;
-                    },
-                    (false,true) =>{
-                        threes +=1;
-                    },
-                    (false,false)=> ()
-
+                        threes += 1;
+                    }
+                    (true, false) => {
+                        twos += 1;
+                    }
+                    (false, true) => {
+                        threes += 1;
+                    }
+                    (false, false) => ()
                 }
-
             }
             (twos * threes).to_string()
         }
@@ -57,17 +55,18 @@ pub fn solve(part: Part) -> String {
 }
 
 fn validate(a: &str, b: &str) -> (bool, String) {
-    let mut mismatch = 0;
-    let mut same = String::new();
-    let mut a_iter = a.chars();
-    let mut b_iter = b.chars();
-    for _ in 0..a.to_string().len() {
-        let aa = a_iter.next().unwrap();
-        if !aa.eq(&b_iter.next().unwrap()) {
-            mismatch += 1;
-        } else {
-            same.push(aa);
-        }
-    }
-    return (mismatch == 1, same);
+    let diff = a.chars()
+        .zip(b.chars())
+        .filter(|(a_c, b_c)| a_c != b_c)
+        .count() == 1;
+    let same = a.chars()
+        .zip(b.chars())
+        .filter_map(|(x, y)| {
+            if x == y {
+                return Some(x);
+            }
+            None
+        })
+        .collect();
+    return (diff, same);
 }
