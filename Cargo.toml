@@ -3,3 +3,7 @@ name = "AdventOfCode2018"
 version = "0.1.0"
 
 [dependencies]
+chrono = { version = "0.4", features = ["serde"] }
+regex = "1.1.0"
+time = "0.1"
+itertools = "0.7.11"
