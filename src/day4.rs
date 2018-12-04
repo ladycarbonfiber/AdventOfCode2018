@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use chrono::prelude::*;
 use regex::Regex;
 use time::Duration;
-use itertools::Itertools;
+use std::iter;
 pub fn solve(part:Part)-> u32{
     let input = read_input(4);
     match part{
@@ -49,7 +49,8 @@ pub fn solve(part:Part)-> u32{
 //            let mut s:Vec<GuardPost> = guards.values().collect();
             let combine = guards.values().skip(1);
             let collected_guards:Vec<GuardPost> = guards.values()
-                .zip(combine)
+                .enumerate()
+                .flat_map(|(i, g)| iter::repeat(g).zip(guards.values().skip(i+1)))
                 .filter_map(|tuple| if tuple.0.id == tuple.1.id{
                     Some(tuple.0.add(tuple.1))
                 }else{
