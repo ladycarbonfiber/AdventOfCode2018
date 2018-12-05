@@ -7,6 +7,7 @@ mod day1;
 mod day2;
 mod day3;
 mod day4;
+mod day5;
 use common::Part;
 macro_rules! day {
     ( $( $x:ident ),* ) => {
@@ -20,5 +21,5 @@ macro_rules! day {
 fn main(){
     println!("Advent of Code 2018");
 
-    day!(day4);
+    day!(day5);
 }
