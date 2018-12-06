@@ -40,6 +40,9 @@ impl Point{
             }
         }
     }
+    pub fn manhattan_distance(&self, other:&Point) -> u32{
+        ((self.x - other.x).abs() + (self.y - other.y).abs()) as u32
+    }
     pub fn print(&self){
         println!("x: {}, y: {}", self.x, self.y);
     }
