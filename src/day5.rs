@@ -1,4 +1,4 @@
-use common::*;
+use crate::common::*;
 use std::iter;
 pub fn solve(part: Part) ->u32 {
     let input = read_input(5);

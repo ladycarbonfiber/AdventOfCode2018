@@ -1,4 +1,4 @@
-use common::*;
+use crate::common::*;
 use std::collections::HashSet;
 
 pub fn solve(part: Part) -> i32 {

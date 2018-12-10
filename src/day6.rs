@@ -1,4 +1,4 @@
-use common::*;
+use crate::common::*;
 use std::collections::HashMap;
 pub fn solve(part:Part) -> u32{
     let input = read_input(6);
@@ -47,7 +47,7 @@ pub fn solve(part:Part) -> u32{
             for x in -1*(small_offset as i32) .. (small_offset as i32){
                 for y in -1*(small_offset as i32) .. (small_offset as i32){
                     let target = Point{x,y};
-                    let mut distances:Vec<u32> = destinations
+                    let distances:Vec<u32> = destinations
                         .iter()
                         .map(|d| d.point.manhattan_distance(&target))
                         .collect();
@@ -107,13 +107,7 @@ pub fn solve(part:Part) -> u32{
 
 
 }
-fn distance_extreme(point:&Point, inf:i32) -> (u32, u32, u32, u32){
-    (point.manhattan_distance(&Point{x:-1*inf, y:-1*inf}),
-     point.manhattan_distance(&Point{x:-1*inf, y:inf}),
-     point.manhattan_distance(&Point{x:inf, y:inf}),
-     point.manhattan_distance(&Point{x:inf, y:-1*inf})
-    )
-}
+
 fn to_point(cords:&str) -> Point{
     let vals:Vec<i32> = cords.split(",").map(|s| s.trim())
         .map(|v| v.parse::<i32>().unwrap())

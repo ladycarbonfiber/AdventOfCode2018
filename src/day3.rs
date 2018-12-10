@@ -1,5 +1,5 @@
-use common::read_input;
-use common::Part;
+use crate::common::read_input;
+use crate::common::Part;
 use std::collections::HashMap;
 
 pub fn solve(part: Part) -> u32 {

@@ -1,4 +1,4 @@
-use common::*;
+use crate::common::*;
 use std::collections::HashMap;
 
 pub fn solve(part: Part) -> String {
