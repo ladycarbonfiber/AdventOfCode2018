@@ -1,8 +1,3 @@
-//crate chrono;
-//crate regex;
-//crate time;
-//crate itertools;
-//crate petgraph;
 mod common;
 mod day1;
 mod day2;
@@ -11,6 +6,7 @@ mod day4;
 mod day5;
 mod day6;
 mod day7;
+mod day10;
 use crate::common::Part;
 macro_rules! day {
     ( $( $x:ident ),* ) => {
@@ -24,5 +20,5 @@ macro_rules! day {
 fn main(){
     println!("Advent of Code 2018");
 
-    day!(day7);
+    day!(day10);
 }

@@ -1,6 +1,7 @@
 use crate::common::Part;
 use crate::common::read_input;
 use regex::Regex;
+use lazy_static::lazy_static;
 use petgraph::prelude::*;
 use petgraph::algo::*;
 use std::collections::HashSet;
@@ -30,7 +31,7 @@ pub fn solve(part: Part) -> String {
             deps.extend_with_edges(adjusted_edges);
             let mut indx_deq = VecDeque::new();
             let mut processed = HashSet::new();
-            for c in b'A'.. = b'Z' {
+            for c in b'A'..= b'Z' {
                 if deps.neighbors_directed(*node_table.get(&(c as char).to_string().as_str()).unwrap(), Direction::Incoming).
                     fold(true, |x, y| x && processed.contains(deps[y])) {
                     indx_deq.push_back(*node_table.get(&(c as char).to_string().as_str()).unwrap());
@@ -72,7 +73,9 @@ pub fn solve(part: Part) -> String {
 }
 
 fn parse_line(line: &str) -> (&str, &str) {
-    let node_regex = Regex::new(r"Step (\w) .+ step (\w)").unwrap();
+    lazy_static! {
+        static ref node_regex:Regex =  Regex::new(r"Step (\w) .+ step (\w)").unwrap();
+        }
     match node_regex.captures(line) {
         Some(t) => {
             (t.get(1).map_or("", |m| m.as_str()), t.get(2).map_or("", |m| m.as_str()))
